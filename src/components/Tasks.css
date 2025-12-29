@@ -1,0 +1,86 @@
+/* Grundlæggende body/app styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Arial", sans-serif;
+  background-color: #242424; /* Gråsorte baggrund */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Container til hele Tasks siden */
+.tasks-container {
+  padding: 40px;
+  background-color: #242424; /* Samme farve som body for hel baggrund */
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Titel */
+.tasks-container h1 {
+  color: #C8A800;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Grid layout til opgaver */
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  justify-items: center;
+}
+
+/* Task bokse */
+.task-box {
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Hover effekt */
+.task-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+/* Tekst i boks */
+.task-box h2 {
+  margin-top: 0;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.task-box p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Farvekodede statusser */
+.task-box.haste { background-color: #e74c3c; }        /* Rød */
+.task-box.nye { background-color: #27ae60; }          /* Grøn */
+.task-box.undervejs { background-color: #16a085; }    /* Cyan/blå */
+.task-box.delte { background-color: #2ecc71; }        /* Grøn */
+.task-box.færdige { background-color: #2ecc71; }      /* Grøn */
+.task-box.annullerede { background-color: #7f8c8d; }  /* Grå */

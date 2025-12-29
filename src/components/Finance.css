@@ -1,0 +1,113 @@
+.finance-container {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #242424;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finance-container h1 {
+  color: #C8A800;
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.customer-list {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.customer-card {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #C8A800;
+  width: 300px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.customer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.customer-card h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.budget-bar {
+  height: 20px;
+  background-color: #555;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.budget-bar-fill {
+  height: 100%;
+  background-color: #C8A800;
+  transition: width 0.3s;
+}
+
+.customer-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.customer-buttons .btn {
+  flex: 1 1 48%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #C8A800;
+  color: #242424;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.customer-buttons .btn:hover {
+  background-color: #b39700;
+}
+
+/* Mobiltilpasning for skærme under 480px */
+@media screen and (max-width: 480px) {
+  .finance-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .customer-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .customer-card h2 {
+    font-size: 20px;
+  }
+
+  .budget-bar {
+    height: 16px;
+  }
+
+  .customer-buttons .btn {
+    flex: 1 1 100%;
+    padding: 10px;
+  }
+}
