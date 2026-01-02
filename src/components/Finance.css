@@ -1,3 +1,4 @@
+/* ---------- OVERORDNET LAYOUT ---------- */
 .finance-container {
   padding: 20px;
   min-height: 100vh;
@@ -17,6 +18,7 @@
   letter-spacing: 1px;
 }
 
+/* ---------- KUNDELISTE ---------- */
 .customer-list {
   display: flex;
   gap: 20px;
@@ -25,48 +27,72 @@
   flex-wrap: wrap;
 }
 
+/* ---------- KUNDEKORT ---------- */
 .customer-card {
   background-color: #333;
   padding: 20px;
   border-radius: 15px;
   border: 1px solid #C8A800;
-  width: 300px;
-  max-width: 90%;
+  width: 320px;
+  max-width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .customer-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.45);
 }
 
 .customer-card h2 {
   margin: 0;
   font-size: 22px;
   font-weight: bold;
+  color: #fff;
 }
 
+.customer-card p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.customer-card strong {
+  color: #C8A800;
+}
+
+/* ---------- GRAF ---------- */
+.chart-wrapper {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- BUDGET BAR ---------- */
 .budget-bar {
-  height: 20px;
+  height: 18px;
   background-color: #555;
   border-radius: 10px;
   overflow: hidden;
-  margin: 10px 0;
+  margin-top: 5px;
 }
 
 .budget-bar-fill {
   height: 100%;
   background-color: #C8A800;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
 }
 
+/* ---------- KNAPPER ---------- */
 .customer-buttons {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
   flex-wrap: wrap;
 }
 
@@ -79,31 +105,66 @@
   color: #242424;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .customer-buttons .btn:hover {
   background-color: #b39700;
+  transform: translateY(-1px);
 }
 
-/* Mobiltilpasning for skærme under 480px */
+/* ---------- MODAL ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #333;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #C8A800;
+  width: 320px;
+  max-width: 90%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #C8A800;
+}
+
+.modal-content p {
+  margin: 0;
+}
+
+/* ---------- MOBIL ---------- */
 @media screen and (max-width: 480px) {
   .finance-container h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 20px;
   }
 
   .customer-card {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
   }
 
   .customer-card h2 {
     font-size: 20px;
   }
 
-  .budget-bar {
-    height: 16px;
+  .chart-wrapper {
+    height: 160px;
   }
 
   .customer-buttons .btn {

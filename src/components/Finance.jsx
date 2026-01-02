@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import "./Finance.css";
 
-export default function Finance() {
-  const [contactInfo, setContactInfo] = useState(null); // Gem kontakt info til modal
+const COLORS = ["#C8A800", "#555"]; // brugt / tilbage
 
-  // Fast definerede tre kunder
+export default function Finance() {
+  const [contactInfo, setContactInfo] = useState(null);
+
   const customers = [
     {
       id: "1",
@@ -13,7 +15,7 @@ export default function Finance() {
       spent: 4000,
       phone: "12345678",
       email: "kontakt@fjordlandet.dk",
-      contractFile: "/contracts/fjordlandet.txt", // placer filen i public/contracts/
+      contractFile: "/contracts/fjordlandet.txt",
     },
     {
       id: "2",
@@ -38,7 +40,7 @@ export default function Finance() {
   const handleDownload = (filePath) => {
     const link = document.createElement("a");
     link.href = filePath;
-    link.download = filePath.split("/").pop(); // gem filen med originalt navn
+    link.download = filePath.split("/").pop();
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -47,24 +49,51 @@ export default function Finance() {
   return (
     <div className="finance-container">
       <h1>Økonomi</h1>
+
       <div className="customer-list">
         {customers.map((customer) => {
-          const remainingPercentage = Math.max(
-            0,
-            ((customer.budget - customer.spent) / customer.budget) * 100
+          const remaining = customer.budget - customer.spent;
+          const usedPercentage = Math.round(
+            (customer.spent / customer.budget) * 100
           );
+
+          const chartData = [
+            { name: "Brugt", value: customer.spent },
+            { name: "Tilbage", value: remaining },
+          ];
 
           return (
             <div key={customer.id} className="customer-card">
               <h2>{customer.name}</h2>
+
               <p>Budget: {customer.budget} kr.</p>
               <p>Brugt: {customer.spent} kr.</p>
+              <p><strong>{usedPercentage}%</strong> af budgettet er anvendt</p>
 
-              {/* Budget barometer */}
+              {/* Cirkeldiagram */}
+              <div className="chart-wrapper">
+                <ResponsiveContainer width="100%" height={180}>
+                  <PieChart>
+                    <Pie
+                      data={chartData}
+                      dataKey="value"
+                      innerRadius={50}
+                      outerRadius={75}
+                      paddingAngle={4}
+                    >
+                      {chartData.map((entry, index) => (
+                        <Cell key={index} fill={COLORS[index]} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Budget bar (beholdt) */}
               <div className="budget-bar">
                 <div
                   className="budget-bar-fill"
-                  style={{ width: `${remainingPercentage}%` }}
+                  style={{ width: `${100 - usedPercentage}%` }}
                 ></div>
               </div>
 
@@ -94,7 +123,7 @@ export default function Finance() {
         })}
       </div>
 
-      {/* Modal til kontakt */}
+      {/* Modal */}
       {contactInfo && (
         <div className="modal-backdrop" onClick={() => setContactInfo(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
