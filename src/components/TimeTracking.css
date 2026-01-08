@@ -1,53 +1,69 @@
-/* Genbrug Tasks styling */
-.tasks-container {
-  padding: 40px;
-  background-color: #242424;
-  color: white;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
+/* Wrapper til centering af hele siden */
+.page-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; /* Vandret centering af container */
+  align-items: center;     /* Lodret centering */
+  min-height: 100vh;       /* Fylder hele viewport */
+  width: 100%;
+  background-color: #242424;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+/* Container til indhold */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer indhold horisontalt */
+  text-align: center;
+  padding: 40px;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+}
+
+/* Titel */
 .tasks-container h1 {
   color: #C8A800;
   font-size: 42px;
-  text-align: center;
   margin-bottom: 50px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+/* Grid layout til bokse */
 .tasks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, max-content));
   gap: 25px;
-  width: 100%;
-  justify-items: center;
+  justify-content: center; /* Centrer kolonnerne samlet */
+  width: auto;             /* Fjern 100% width for at undgå overlap */
 }
 
+/* Task / TimeTracking bokse */
 .task-box {
   padding: 25px;
   border-radius: 15px;
   color: white;
   width: 100%;
-  max-width: 320px;
+  max-width: 320px; /* Sikrer at bokse ikke bliver for brede */
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
 }
 
+/* Hover effekt */
 .task-box:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.4);
 }
 
+/* Tekst i boks */
 .task-box h2 {
   margin-top: 0;
   font-size: 24px;
@@ -55,6 +71,38 @@
   font-weight: bold;
 }
 
-.task-box p, .task-box input, .task-box button {
+.task-box p, 
+.task-box input, 
+.task-box button {
   font-size: 16px;
+}
+
+/* Farvekodede statusser */
+.task-box.haste { background-color: #e74c3c; }       
+.task-box.nye { background-color: #27ae60; }         
+.task-box.undervejs { background-color: #16a085; }   
+.task-box.delte { background-color: #2ecc71; }       
+.task-box.færdige { background-color: #2ecc71; }     
+.task-box.annullerede { background-color: #7f8c8d; } 
+
+/* Input og knapper */
+.task-box input {
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  background-color: #333;
+  color: white;
+  text-align: center; /* Centrer tekst i input */
+}
+
+.task-box button {
+  background-color: #C8A800;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }

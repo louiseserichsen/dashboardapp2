@@ -1,3 +1,4 @@
+// src/pages/Tasks.jsx
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
@@ -6,12 +7,12 @@ import "./Tasks.css";
 const statusOrder = ["haste", "nye", "undervejs", "delte", "færdige", "annullerede"];
 
 const statusColors = {
-  haste: "haste",          
-  nye: "nye",              
-  undervejs: "undervejs",  
-  delte: "delte",          
-  færdige: "færdige",      
-  annullerede: "annullerede", 
+  haste: "haste",
+  nye: "nye",
+  undervejs: "undervejs",
+  delte: "delte",
+  færdige: "færdige",
+  annullerede: "annullerede",
 };
 
 function Tasks() {
@@ -43,26 +44,28 @@ function Tasks() {
   });
 
   return (
-    <div className="tasks-container">
-      <h1>Opgaver</h1>
-      <div className="tasks-grid">
-        {sortedTasks.map((task) => (
-          <div
-            key={task.id}
-            className={`task-box ${statusColors[task.status]}`}
-          >
-            <h2>{task.title}</h2>
-            <p><strong>Kunde:</strong> {task.customer}</p>
-            <p>
-              <strong>Status:</strong>{" "}
-              {task.status === "haste" ? "Haster" : task.status}
-            </p>
-            <p>
-              <strong>Deadline:</strong>{" "}
-              {task.deadline?.toDate?.()?.toLocaleString()}
-            </p>
-          </div>
-        ))}
+    <div className="tasks-wrapper">
+      <div className="tasks-container">
+        <h1>Opgaver</h1>
+        <div className="tasks-grid">
+          {sortedTasks.map((task) => (
+            <div
+              key={task.id}
+              className={`task-box ${statusColors[task.status]}`}
+            >
+              <h2>{task.title}</h2>
+              <p><strong>Kunde:</strong> {task.Customer}</p>
+              <p>
+                <strong>Status:</strong>{" "}
+                {task.status === "haste" ? "Haster" : task.status}
+              </p>
+              <p>
+                <strong>Deadline:</strong>{" "}
+                {task.deadline?.toDate?.()?.toLocaleString()}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

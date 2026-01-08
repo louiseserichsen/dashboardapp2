@@ -1,9 +1,12 @@
-// firebase.js
+// src/firebase.js
+
+// Importer Firebase-funktioner
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
-// Firebase-konfiguration
+// Din Firebase-konfiguration
 const firebaseConfig = {
   apiKey: "AIzaSyAxtidbOISqb7iUEdve5rHSgd_CDUOG1es",
   authDomain: "dashboard-app-76626.firebaseapp.com",
@@ -17,6 +20,14 @@ const firebaseConfig = {
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialiser Analytics (valgfrit)
+let analytics;
+if (typeof window !== "undefined") {
+  analytics = getAnalytics(app);
+}
+
 // Eksporter auth og firestore
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export { analytics };
+export default app;

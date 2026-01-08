@@ -7,6 +7,7 @@ const COLORS = ["#C8A800", "#555"]; // brugt / tilbage
 export default function Finance() {
   const [contactInfo, setContactInfo] = useState(null);
 
+  // ✅ Kunder direkte fra opgavelisten
   const customers = [
     {
       id: "1",
@@ -19,21 +20,39 @@ export default function Finance() {
     },
     {
       id: "2",
-      name: "Nordic Group",
+      name: "Grundsmag",
       budget: 8000,
       spent: 2000,
       phone: "87654321",
-      email: "info@nordicgroup.dk",
-      contractFile: "/contracts/nordic.txt",
+      email: "info@grundsmag.dk",
+      contractFile: "/contracts/grundsmag.txt",
     },
     {
       id: "3",
-      name: "København ApS",
+      name: "Gorm Hansen",
       budget: 12000,
       spent: 6000,
       phone: "11223344",
-      email: "contact@copenhagen.dk",
-      contractFile: "/contracts/copenhagen.txt",
+      email: "contact@gorm.dk",
+      contractFile: "/contracts/gorm.txt",
+    },
+    {
+      id: "4",
+      name: "Dagbladet",
+      budget: 15000,
+      spent: 15000,
+      phone: "22334455",
+      email: "kontakt@dagbladet.dk",
+      contractFile: "/contracts/dagbladet.txt",
+    },
+    {
+      id: "5",
+      name: "Solum",
+      budget: 5000,
+      spent: 1000,
+      phone: "33445566",
+      email: "kontakt@solum.dk",
+      contractFile: "/contracts/solum.txt",
     },
   ];
 
@@ -89,7 +108,7 @@ export default function Finance() {
                 </ResponsiveContainer>
               </div>
 
-              {/* Budget bar (beholdt) */}
+              {/* Budget bar */}
               <div className="budget-bar">
                 <div
                   className="budget-bar-fill"

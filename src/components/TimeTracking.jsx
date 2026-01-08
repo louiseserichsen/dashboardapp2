@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import "./TimeTracking.css";
 
 const daysOfWeek = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
-const currentWeek = "Uge 50"; // Kan evt. gøres dynamisk
+const currentWeek = "Uge 50";
 
 function TimeTracking() {
   const [timeEntries, setTimeEntries] = useState({});
@@ -23,13 +23,10 @@ function TimeTracking() {
       setTimeEntries(entries);
       setLoading(false);
     };
-
     fetchTimeEntries();
   }, []);
 
-  const handleChange = (day, value) => {
-    setTimeEntries(prev => ({ ...prev, [day]: value }));
-  };
+  const handleChange = (day, value) => setTimeEntries(prev => ({ ...prev, [day]: value }));
 
   const handleSave = async (day) => {
     try {
@@ -46,41 +43,30 @@ function TimeTracking() {
 
   if (loading) {
     return (
-      <div className="tasks-container" style={{ textAlign: "center", color: "#C8A800", padding: "50px" }}>
-        Indlæser...
+      <div className="page-wrapper">
+        <div className="tasks-container" style={{ color: "#C8A800" }}>Indlæser...</div>
       </div>
     );
   }
 
   return (
-    <div className="tasks-container">
-      <h1>Tidslog - {currentWeek}</h1>
-      <div className="tasks-grid">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="task-box undervejs">
-            <h2>{day}</h2>
-            <input
-              type="text"
-              value={timeEntries[day] || ""}
-              onChange={(e) => handleChange(day, e.target.value)}
-              placeholder="Indtast timer"
-              style={{ padding: "8px", borderRadius: "5px", marginBottom: "10px", width: "100%" }}
-            />
-            <button
-              onClick={() => handleSave(day)}
-              style={{
-                backgroundColor: "#C8A800",
-                border: "none",
-                padding: "8px 12px",
-                borderRadius: "5px",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Gem
-            </button>
-          </div>
-        ))}
+    <div className="page-wrapper">
+      <div className="tasks-container">
+        <h1>Tidslog - {currentWeek}</h1>
+        <div className="tasks-grid">
+          {daysOfWeek.map((day) => (
+            <div key={day} className="task-box undervejs">
+              <h2>{day}</h2>
+              <input
+                type="text"
+                value={timeEntries[day] || ""}
+                onChange={(e) => handleChange(day, e.target.value)}
+                placeholder="Indtast timer"
+              />
+              <button onClick={() => handleSave(day)}>Gem</button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
