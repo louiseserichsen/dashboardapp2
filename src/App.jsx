@@ -19,12 +19,13 @@ function App() {
       setUser(currentUser);
       setLoading(false);
     });
-    return () => unsubscribe();
+
+    return unsubscribe; // korrekt cleanup
   }, []);
 
   if (loading) {
     return (
-      <div style={{ padding: "50px", textAlign: "center", color: "#C8A800" }}>
+      <div style={{ padding: 50, textAlign: "center", color: "#C8A800" }}>
         Indlæser...
       </div>
     );
@@ -36,45 +37,59 @@ function App() {
         {/* Login */}
         <Route path="/login" element={<Login />} />
 
-        {/* Beskyttede sider */}
+        {/* Dashboard */}
         <Route
           path="/"
           element={
             <ProtectedRoute user={user}>
-              <Dashboard />
-              <BottomNav />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/tasks"
-          element={
-            <ProtectedRoute user={user}>
-              <Tasks />
-              <BottomNav />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/timetracking"
-          element={
-            <ProtectedRoute user={user}>
-              <TimeTracking />
-              <BottomNav />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/finance"
-          element={
-            <ProtectedRoute user={user}>
-              <Finance />
-              <BottomNav />
+              <>
+                <Dashboard />
+                <BottomNav />
+              </>
             </ProtectedRoute>
           }
         />
 
-        {/* Alt andet → login */}
+        {/* Tasks */}
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute user={user}>
+              <>
+                <Tasks />
+                <BottomNav />
+              </>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Time tracking */}
+        <Route
+          path="/timetracking"
+          element={
+            <ProtectedRoute user={user}>
+              <>
+                <TimeTracking />
+                <BottomNav />
+              </>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Finance */}
+        <Route
+          path="/finance"
+          element={
+            <ProtectedRoute user={user}>
+              <>
+                <Finance />
+                <BottomNav />
+              </>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

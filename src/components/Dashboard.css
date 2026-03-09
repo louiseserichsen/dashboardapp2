@@ -40,10 +40,48 @@ main {
   width: 220px;
   text-decoration: none;
   color: white;
+  position: relative; /* vigtigt for ikon absolut */
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .dashboard-card:hover {
   background-color: #444;
   transform: translateY(-4px);
+}
+
+/* 🔔 Advarselsikon – ca. 2 gange større, absolut inden i boksen */
+.warning-icon {
+  position: absolute;
+  top: 6px;       /* lidt ind fra toppen for balance */
+  right: 6px;     /* lidt ind fra kanten */
+  width: 44px;    /* ca. 2x original (22px → 44px) */
+  height: 44px;   /* ca. 2x original (22px → 44px) */
+  background-color: #e63946;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 28px; /* ca. 2x original (14px → 28px) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+  border: none;
+}
+
+/* Tooltip – under det lidt større ikon */
+.warning-tooltip {
+  position: absolute;
+  top: 50px; /* lidt under ikonet (44px + lidt luft) */
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  width: 200px;
+  z-index: 3;
+  white-space: normal;
+  text-align: left;
 }

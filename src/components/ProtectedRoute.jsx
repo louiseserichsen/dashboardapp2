@@ -1,9 +1,13 @@
 import { Navigate } from "react-router-dom";
 
-export default function ProtectedRoute({ user, children }) {
+function ProtectedRoute({ user, children }) {
+  // Hvis ikke logget ind → send til login
   if (!user) {
-    // Hvis ikke logget ind → send til login
     return <Navigate to="/login" replace />;
   }
-  return children;
+
+  // Logget ind → vis indhold
+  return <>{children}</>;
 }
+
+export default ProtectedRoute;
